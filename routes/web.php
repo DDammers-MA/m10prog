@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\welcomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,3 +30,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/welcome', [welcomeController::class,'index'])->name('welcome');
+
+Route::get('/about', [AboutController::class,'index'])->name('about');
+
+Route::get('/project-item', [AboutController::class])->name('project-item');
