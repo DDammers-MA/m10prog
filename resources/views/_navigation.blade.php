@@ -11,7 +11,7 @@
 
                     <li><a href="{{ route('about') }}" class="mr-3 px-4 py-2 @if(Route::currentRouteName() == 'about') bg-lime-400  @else bg-lightblue @endif text-black">About</a></li>
 
-                    <li><a href="#" class="mr-3 px-4 py-2 @if(Route::currentRouteName() == '')  @else bg-lightblue @endif text-black">Contact</a></li>
+                    <li><a href="{{ route('contact') }}" class="mr-3 px-4 py-2 @if(Route::currentRouteName() == 'contact') bg-lime-400 @else  bg-lightblue @endif text-black">Contact</a></li>
 
                 </ul>
             </nav>

@@ -3,7 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\welcomeController;
+use PhpParser\Node\Expr\AssignOp\Concat;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,5 +37,7 @@ require __DIR__.'/auth.php';
 Route::get('/welcome', [welcomeController::class,'index'])->name('welcome');
 
 Route::get('/about', [AboutController::class,'index'])->name('about');
+
+Route::get('/contact', [ContactController::class,'index'])->name('contact');
 
 Route::get('/project-item', [AboutController::class])->name('project-item');
