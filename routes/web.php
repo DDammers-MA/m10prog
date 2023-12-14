@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\welcomeController;
 use PhpParser\Node\Expr\AssignOp\Concat;
 
@@ -41,3 +42,8 @@ Route::get('/about', [AboutController::class,'index'])->name('about');
 Route::get('/contact', [ContactController::class,'index'])->name('contact');
 
 Route::get('/project-item', [AboutController::class])->name('project-item');
+
+Route::get('/projects/add', [ ProjectController::class, 'add' ])->name('project.add');
+
+Route::get('/project', [ ProjectController::class,'index'])->name('project');
+
