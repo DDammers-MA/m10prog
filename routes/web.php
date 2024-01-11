@@ -47,3 +47,4 @@ Route::get('/projects/add', [ ProjectController::class, 'add' ])->name('project.
 
 Route::get('/project', [ ProjectController::class,'index'])->name('project');
 
+Route::get('/project/{project}', [ProjectController::class, 'show'])->name('project.show');

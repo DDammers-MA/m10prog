@@ -17,12 +17,21 @@ class ProjectController extends Controller
       
         $model->save();
 
-    
     }
+
 
     public function index(){
         $project = Project::all();
         return view('projects', ['project' => $project]);
     }
+
+    public function show(Project $project)
+    {
+      
+        return view('projects.show', ['project' => $project]);
+
+    }
+
 }
+
 

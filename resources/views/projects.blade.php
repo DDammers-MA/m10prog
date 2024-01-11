@@ -8,6 +8,7 @@
         @foreach($project as $project )
             <h2>{{$project->titel}}</h2>
             <p>{{$project->description}}</p>
+          
             @endforeach
 </article>
 </section>
