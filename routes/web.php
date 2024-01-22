@@ -4,8 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\MijnControler;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\welcomeController;
+use App\Models\Project;
 use PhpParser\Node\Expr\AssignOp\Concat;
 
 /*
@@ -33,18 +35,31 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::get('/welcome', [welcomeController::class,'index'])->name('welcome');
+Route::get('/welcome', [welcomeController::class, 'index'])->name('welcome');
 
-Route::get('/about', [AboutController::class,'index'])->name('about');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
 
-Route::get('/contact', [ContactController::class,'index'])->name('contact');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 Route::get('/project-item', [AboutController::class])->name('project-item');
 
-Route::get('/projects/add', [ ProjectController::class, 'add' ])->name('project.add');
+Route::get('/projects/add', [ProjectController::class, 'add'])->name('project.add');
 
-Route::get('/project', [ ProjectController::class,'index'])->name('project');
+Route::get('/project', [ProjectController::class, 'index'])->name('project');
 
 Route::get('/project/{project}', [ProjectController::class, 'show'])->name('project.show');
+
+Route::prefix('/dashboard')
+    ->middleware(['auth', 'verified'])
+    ->group(function () {
+        Route::get('/', function () {
+            $projects = Project::paginate(2);
+            return view('dashboard.projects.index', ['projects' => $projects]);
+        })->name('dashboard');
+
+        Route::resources([
+            'project' => MijnControler::class,
+        ]);
+    });
