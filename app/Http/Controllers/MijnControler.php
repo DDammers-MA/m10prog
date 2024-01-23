@@ -31,7 +31,21 @@ return view('dashboard.projects.index', ['projects'=>$projects]);
      */
     public function store(Request $request)
     {
-        dump( $request->all() );
+       
+
+        $valid = $request->validate([
+            'titel' => 'required|unique:projects,titel|max:255',
+            'description' => 'required',
+        ]);
+  
+        $project = new Project([
+            'titel' => $valid['title'],
+            'description' => $valid['description'],
+        ]);
+
+        $project->save();
+
+        return redirect( route('project.show', $project->id ) );
       
     }
 
@@ -40,7 +54,7 @@ return view('dashboard.projects.index', ['projects'=>$projects]);
      */
     public function show(Project $project)
     {
-        //
+        
     }
 
     /**
@@ -48,7 +62,7 @@ return view('dashboard.projects.index', ['projects'=>$projects]);
      */
     public function edit(Project $project)
     {
-        //
+        return view('dashboard.projects.edit', ['project'=>$project]);
     }
 
     /**
@@ -56,7 +70,14 @@ return view('dashboard.projects.index', ['projects'=>$projects]);
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $valid = $request->validate([
+            'titel'       => 'required|unique:projects|max:255',
+            'description' => 'required',
+        ]);
+    
+        $project->update($valid);
+    
+        return redirect(route('project.show', $project->id));
     }
 
     /**

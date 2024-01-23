@@ -11,19 +11,26 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
 
-                  
-
-        @foreach($projects as $project)
-        <a class="text-black" href="{{$project->title}}">{{ $project->titel }}</a><br>
-        <a href="{{ route('project.show', $project) }}">Bekijk dit</a>
-        @endforeach
 
 
-        @auth
-        <a href="{{ route('project.create') }}" class="bg-blue hover:bg-green text-white font-bold py-2 px-4 rounded">Nieuw Project</a>
+                    @foreach($projects as $project)
+                    <p class="text-black"">{{ $project->titel }}</p>
+                    <a href="{{ route('projects.show', $project) }}">Bekijk dit</a>
+                    <br>
 
-@endauth
-               
+                    <a href="{{route('projects.edit', $project)}}" class="bg-yellow me-2 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
+                        Wijzig
+                    </a>
+                    <br>
+
+                    @endforeach
+
+
+                    @auth
+                    <a href="{{ route('projects.create') }}" class="bg-blue hover:bg-green text-white font-bold py-2 px-4 rounded">Nieuw Project</a>
+
+                    @endauth
+
                 </div>
             </div>
         </div>

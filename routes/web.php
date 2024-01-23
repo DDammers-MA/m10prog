@@ -57,9 +57,13 @@ Route::prefix('/dashboard')
         Route::get('/', function () {
             $projects = Project::paginate(2);
             return view('dashboard.projects.index', ['projects' => $projects]);
+            
         })->name('dashboard');
 
+        Route::post('/projects', 'MijnControler@store')->name('projects.store');
+
+
         Route::resources([
-            'project' => MijnControler::class,
+            'projects' => MijnControler::class,
         ]);
     });
