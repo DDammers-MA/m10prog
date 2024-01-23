@@ -39,7 +39,7 @@ return view('dashboard.projects.index', ['projects'=>$projects]);
         ]);
   
         $project = new Project([
-            'titel' => $valid['title'],
+            'titel' => $valid['titel'],
             'description' => $valid['description'],
         ]);
 
@@ -85,6 +85,7 @@ return view('dashboard.projects.index', ['projects'=>$projects]);
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect(route('projects.index'))->with('alert', 'Het item '.$project->title.' is nu weg.');
     }
 }
