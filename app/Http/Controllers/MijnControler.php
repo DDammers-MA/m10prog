@@ -41,8 +41,13 @@ return view('dashboard.projects.index', ['projects'=>$projects]);
         $project = new Project([
             'titel' => $valid['titel'],
             'description' => $valid['description'],
+            
         ]);
 
+
+        $path = $request->file('image')?->store('public');
+       
+        $project->image = $path;
         $project->save();
 
         return redirect( route('project.show', $project->id ) );
@@ -74,7 +79,12 @@ return view('dashboard.projects.index', ['projects'=>$projects]);
             'titel'       => 'required|unique:projects|max:255',
             'description' => 'required',
         ]);
+
     
+        
+        $path = $request->file('image')?->store('public');
+       
+        $project->image = $path;
         $project->update($valid);
     
         return redirect(route('project.show', $project->id));

@@ -267,13 +267,13 @@ button {
     </div>
 @endif
 
-<form method="POST" action="{{ $route }}" class="bg-white rounded px-8 pt-6 pb-8 mb-4">
+<form method="POST" action="{{ $route }}" class="bg-white rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
 @csrf
     {{ method_field($method) }}
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="titel">
             Titel
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="title" name="titel" type="text" placeholder="titel" value="{{old('tite;', $project->titel)}}">
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="title" name="titel" type="text" placeholder="titel" value="{{old('titel;', $project->titel)}}">
 </label>
     </div>
     <div class="mb-4">
@@ -282,6 +282,13 @@ button {
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" name="description" type="text" placeholder="beschrijving" value="{{old('description', $project->description)}}">
         </label>
     </div>
+
+    <div>
+      <label  class="block text-gray-700 text-sm font-bold mb-2" for="image">
+      <input type="file" name="image" >
+      </label>
+    </div>
+
     <button type="submit" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Save</button>
 </form>
 
